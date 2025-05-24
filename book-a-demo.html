@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Demo | HealthTune.io</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; }
+
+    /* Header */
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      color: black;
+      padding: 15px 40px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .logo i {
+      margin-right: 10px;
+      background-color: white;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 50px;
+      color: #117a65;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      /* border-radius: 50px; */
+      
+    }
+    .nav-links a {
+      color: black;
+      text-decoration: none;
+      font-weight: 500;
+    }
+.nav-links a:hover {
+  background-color: #f2f7f6;
+  border-radius: 30px; /* add a number here */
+    padding:  10px; 
+}
+
+
+    /* Section Header */
+    .demo-header {
+      background-color: #e9f6f3;
+      color: black;
+      padding: 40px;
+      text-align: center;
+    }
+    .demo-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    /* Main Layout */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px;
+      gap: 20px;
+    }
+    .image-side {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      height: 600px;
+      border-radius: 8px;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+    .form-side {
+      flex: 1;
+      min-width: 300px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .form-side h2 {
+      color: #0A5275;
+      margin-bottom: 20px;
+    }
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    form button {
+      background-color: #228e78;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #329f89;
+    }
+
+    #confirmationMessage {
+      display: none;
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #117a65;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-links {
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo + Navigation -->
+  <header class="main-header">
+    <div class="logo">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      HealthTune
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">How It Works</a>
+      <a href="#">Compliance</a>
+      <a href="#">Pricing</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Demo Section Title -->
+  <section class="demo-header">
+    <h1>Book a Demo</h1>
+    <p>Experience how HealthTune.io can transform your healthcare documentation.</p>
+  </section>
+
+  <!-- Image + Form -->
+  <div class="container">
+    <div class="image-side" id="imageSlider"></div>
+    <div class="form-side">
+      <h2>Schedule Your Personalized Demo</h2>
+      <form id="demoForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="organization" placeholder="Your Organization" />
+        <input type="date" name="preferred_date" required />
+        <textarea name="message" placeholder="Any specific questions?" rows="4"></textarea>
+        <button type="submit">Book Demo</button>
+      </form>
+      <div id="confirmationMessage">Thanks for booking your demo! We'll get back to you shortly.</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 HealthTune.io | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Rotating Image Logic
+    const images = [
+      './images/woman-talking-to-doctor.jpg',
+      './images/image3.webp',
+      './images/image4.avif'
+    ];
+    let index = 0;
+    const slider = document.getElementById('imageSlider');
+
+    function rotateImage() {
+      slider.style.backgroundImage = `url('${images[index]}')`;
+      index = (index + 1) % images.length;
+    }
+    rotateImage(); // Initial
+    setInterval(rotateImage, 5000); // Every 5 sec
+
+    // Form Confirmation Logic
+    const form = document.getElementById('demoForm');
+    const confirmation = document.getElementById('confirmationMessage');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      form.reset();
+      form.style.display = 'none';
+      confirmation.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
