@@ -38,20 +38,17 @@
     .nav-links {
       display: flex;
       gap: 30px;
-      /* border-radius: 50px; */
-      
     }
     .nav-links a {
       color: black;
       text-decoration: none;
       font-weight: 500;
     }
-.nav-links a:hover {
-  background-color: #f2f7f6;
-  border-radius: 30px; /* add a number here */
-    padding:  10px; 
-}
-
+    .nav-links a:hover {
+      background-color: #f2f7f6;
+      border-radius: 30px;
+      padding: 10px;
+    }
 
     /* Section Header */
     .demo-header {
@@ -76,12 +73,13 @@
     .image-side {
       flex: 1;
       min-width: 300px;
-      max-width: 600px;
       height: 600px;
+      min-height: 300px;
       border-radius: 8px;
       background-size: cover;
       background-position: center;
       transition: background-image 1s ease-in-out;
+      background-color: #e0e0e0;
     }
     .form-side {
       flex: 1;
@@ -126,31 +124,36 @@
       text-align: center;
       padding: 20px;
       margin-top: 40px;
-      gap: 20px;
     }
     footer a {
       color: #fff;
       text-decoration: none;
       margin: 0 10px;
-      gap: 20px;
     }
 
+    /* Responsive Styles */
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
         align-items: center;
       }
+      .image-side {
+        width: 100%;
+        height: 300px;
+        min-height: 300px;
+      }
       .nav-links {
         margin-top: 10px;
         justify-content: center;
         width: 100%;
+        flex-wrap: wrap;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header with Logo + Navigation -->
+  <!-- Header -->
   <header class="main-header">
     <div class="logo">
       <i class="fa fa-plus" aria-hidden="true"></i>
@@ -165,13 +168,13 @@
     </nav>
   </header>
 
-  <!-- Demo Section Title -->
+  <!-- Section Title -->
   <section class="demo-header">
     <h1>Book a Demo</h1>
     <p>Experience how HealthTune.io can transform your healthcare documentation.</p>
   </section>
 
-  <!-- Image + Form -->
+  <!-- Main Container -->
   <div class="container">
     <div class="image-side" id="imageSlider"></div>
     <div class="form-side">
@@ -193,19 +196,17 @@
     <p>&copy; 2025 HealthTune.io | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- JavaScript -->
   <script>
-    // Rotating Image Logic
     const images = [
       './images/woman-talking-to-doctor.jpg',
       './images/image8.jpg',
       './images/image3.webp',
-       './images/image5.webp',
-      
- './images/image9.jpg',
+      './images/image5.webp',
+      './images/image9.jpg',
       './images/image4.avif'
-     
     ];
+
     let index = 0;
     const slider = document.getElementById('imageSlider');
 
@@ -213,10 +214,10 @@
       slider.style.backgroundImage = `url('${images[index]}')`;
       index = (index + 1) % images.length;
     }
-    rotateImage(); // Initial
-    setInterval(rotateImage, 5000); // Every 5 sec
 
-    // Form Confirmation Logic
+    rotateImage(); // Show first image immediately
+    setInterval(rotateImage, 5000); // Rotate every 5 seconds
+
     const form = document.getElementById('demoForm');
     const confirmation = document.getElementById('confirmationMessage');
     form.addEventListener('submit', function(e) {
